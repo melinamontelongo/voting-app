@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model Session {
+
+  session_id  String    @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @unique
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        String?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+  user          User?     @relation(fields: [userId], references: [id])
+}
+
+model Survey {
+    id  String  @id @default(auto()) @map("_id") @db.ObjectId
+    title String 
+    description String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    startDate   DateTime
+    endDate     DateTime
+    options Option []
+}
+
+model Option {
+    id  String  @id @default(auto()) @map("_id") @db.ObjectId
+    images Image[]
+    text String
+    votes Vote[]
+    survey  Survey? @relation(fields: [surveyId], references: [id])
+    surveyId String?
+}
+
+model Image {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  url String
+  option Option? @relation(fields: [optionId], references: [id])
+  optionId String?
+}
+
+model Vote{
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  user     User    @relation(fields: [userId], references: [id])
+  userId   String
+  option   Option? @relation(fields: [optionId], references: [id])
+  optionId String?
+}
+
+model User{
+    id  String  @id @default(auto()) @map("_id") @db.ObjectId
+    username String
+    sessions Session[]
+    votes    Vote[]
+}
