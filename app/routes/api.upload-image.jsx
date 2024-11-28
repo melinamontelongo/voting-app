@@ -4,7 +4,7 @@ import { unstable_parseMultipartFormData, unstable_createMemoryUploadHandler, js
 const prepareFiles = (files) => files.map((file) => ({
   filename: file.name,
   mimeType: file.type,
-  resource: file.type.includes('image') ? 'IMAGE' : 'FILE',
+  resource: file.type?.includes('image') ? 'IMAGE' : 'FILE',
   fileSize: file.size.toString(),
   httpMethod: 'POST',
 }));

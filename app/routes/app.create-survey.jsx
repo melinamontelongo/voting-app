@@ -57,7 +57,7 @@ export const action = async({request}) => {
   
   console.log('Survey created:', survey);
 
-  return json({ survey });
+  return json({ survey, status: 201 });
 }
 
 export default function CreateSurvey() {
@@ -103,6 +103,7 @@ export default function CreateSurvey() {
 
     // Submit the form data
     fetcher.submit(formData, { method: "POST" });
+
   };
 
     const handleAddOption = () => {
@@ -139,7 +140,9 @@ export default function CreateSurvey() {
       setOptions(newOptions);
     };
 
-   
+    if(fetcher.data?.status === 201) {
+      shopify.toast.show("Survey created successfully");
+    }
     return (
       <Page>
         <TitleBar title="Create Survey" />

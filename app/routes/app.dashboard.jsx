@@ -59,22 +59,6 @@ export default function Dashboard() {
                          <Link monochrome url={`/app/survey-details?id=${survey.id}`}>
                            {survey.title}
                          </Link>
-                         <InlineGrid columns="1fr auto" gap={"300"}>
-                         <Button
-                           onClick={() => handleEdit(survey.id)}
-                           accessibilityLabel="Edit"
-                           icon={EditIcon}
-                         >
-                           Edit
-                         </Button>
-                         <Button
-                           onClick={() => handleDelete(survey.id)}
-                           accessibilityLabel="Delete"
-                           icon={DeleteIcon}
-                         >
-                           Delete
-                         </Button>
-                         </InlineGrid>
                        </InlineGrid>
                        <Text as="p" variant="bodyMd">
                          { survey.description }

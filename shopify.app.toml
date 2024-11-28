@@ -3,7 +3,7 @@
 client_id = "e93245cfb2a474162d621757de6e8c09"
 name = "voting-app"
 handle = "voting-app-3"
-application_url = "https://tba-voice-centuries-said.trycloudflare.com"
+application_url = "https://gig-constitution-editions-feof.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_files,read_product_listings,read_products,unauthenticated_read_pr
 
 [auth]
 redirect_urls = [
-  "https://tba-voice-centuries-said.trycloudflare.com/auth/callback",
-  "https://tba-voice-centuries-said.trycloudflare.com/auth/shopify/callback",
-  "https://tba-voice-centuries-said.trycloudflare.com/api/auth/callback"
+  "https://gig-constitution-editions-feof.trycloudflare.com/auth/callback",
+  "https://gig-constitution-editions-feof.trycloudflare.com/auth/shopify/callback",
+  "https://gig-constitution-editions-feof.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
